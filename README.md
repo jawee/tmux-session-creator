@@ -4,8 +4,13 @@
 
 * jq (`apt install jq`)
 
-`chmod +x tmux`
-`./tmux`
+```bash
+chmod +x tmux
+```
+
+```bash
+./tmux
+```
 
 ### TODO
 
