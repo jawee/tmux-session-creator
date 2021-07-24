@@ -3,7 +3,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 FILE_PATH=$SCRIPT_DIR/tmux-config.json
 SESSION_NAME=`jq -r ".name" $FILE_PATH`
 DIR_PATH=`jq -r ".path" $FILE_PATH`
-echo $DIR_PATH
 
 pushd "$HOME$DIR_PATH"
 COUNT=0
@@ -15,9 +14,7 @@ while read -r window; do
   then
     tmux new-session -s $SESSION_NAME -d -n $WINDOW_NAME
     tmux send-keys -t $SESSION_NAME:$WINDOW_NAME "$COMMAND_STR" Enter
-    echo $COUNT
     COUNT=$((COUNT+1))
-    echo $COUNT
   else
     tmux new-window -t $SESSION_NAME -d -n $WINDOW_NAME
     tmux send-keys -t $SESSION_NAME:$WINDOW_NAME "$COMMAND_STR" Enter
