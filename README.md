@@ -4,6 +4,8 @@
 
 * jq (`apt install jq`)
 
+## How to run
+
 ```bash
 chmod +x tmux
 ```
@@ -12,6 +14,6 @@ chmod +x tmux
 ./tmux
 ```
 
-### TODO
+## TODO
 
 * Make json configuration file passable to script so it's not just one file
