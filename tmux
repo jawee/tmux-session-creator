@@ -6,13 +6,22 @@ DIR_PATH=`jq -r ".path" $FILE_PATH`
 echo $DIR_PATH
 
 pushd "$HOME$DIR_PATH"
-tmux new-session -s $SESSION_NAME -d
+COUNT=0
 while read -r window; do
   WINDOW_NAME=$(echo $window | jq -r '.name')
   COMMAND_STR=$(echo $window | jq -r '.command')
 
-  tmux new-window -t $SESSION_NAME -d -n $WINDOW_NAME
-  tmux send-keys -t $SESSION_NAME:$WINDOW_NAME "$COMMAND_STR" Enter
+  if [ "$COUNT" -eq "0" ]
+  then
+    tmux new-session -s $SESSION_NAME -d -n $WINDOW_NAME
+    tmux send-keys -t $SESSION_NAME:$WINDOW_NAME "$COMMAND_STR" Enter
+    echo $COUNT
+    COUNT=$((COUNT+1))
+    echo $COUNT
+  else
+    tmux new-window -t $SESSION_NAME -d -n $WINDOW_NAME
+    tmux send-keys -t $SESSION_NAME:$WINDOW_NAME "$COMMAND_STR" Enter
+  fi
 done <<< "$(cat $FILE_PATH | jq -c '.windows[]')"
 
 tmux -u attach -t $SESSION_NAME
