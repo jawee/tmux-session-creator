@@ -11,9 +11,11 @@ chmod +x tmux
 ```
 
 ```bash
-./tmux
+./tmux tmux-config.json
 ```
 
-## TODO
+Can be called from a different directory.
 
-* Make json configuration file passable to script so it's not just one file
+```bash
+./../../path/to/tmux-session/tmux tmux-config.json
+```
