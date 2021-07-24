@@ -1,0 +1,14 @@
+{
+  "path": "~/Projects/docker-image-update-system",
+  "name": "dius",
+  "windows": [
+    {
+      "name": "BE-vim",
+      "command": "cd api && vim ."
+    },
+    {
+      "name": "BE-run",
+      "command": "cd api/src && npm run start"
+    }
+  ]
+}
