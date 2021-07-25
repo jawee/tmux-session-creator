@@ -1,4 +1,10 @@
 #!/bin/bash
+if ! command -v jq &> /dev/null
+then
+    echo "jq could not be found"
+    exit
+fi
+
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied. Should be called with a filename of a config"
